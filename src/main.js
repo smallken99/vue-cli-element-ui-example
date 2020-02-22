@@ -7,9 +7,9 @@ import './assets/css/global.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import ElementUI from 'element-ui';
 import axios from 'axios'
-import {Message} from 'element-ui';
+import { Message } from 'element-ui';
 
-axios.defaults.baseURL = 'http://127.0.0.1/api/'
+axios.defaults.baseURL = 'http://localhost:3000/'
 Vue.prototype.$http = axios
 Vue.prototype.$message = Message
 

@@ -1,0 +1,18 @@
+{
+	"login":{
+
+
+		"data":{
+			"id":500,
+			"rid": 0,
+			"username":"admin",
+			"mobile": "123",
+			"email" : "123@gmail.com",
+			"token":"diwiiddw2df83kdkwe83kds82idwef"
+		},
+		"meta":{
+			"msg":"登入成功",
+			"status": 200
+		}
+	}
+}

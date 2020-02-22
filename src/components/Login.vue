@@ -39,47 +39,52 @@ export default {
     return {
       // 登入表單的數據綁定物件
       loginForm: {
-        username: "smallken",
-        password: "xxx"
+        username: 'smallken',
+        password: 'xxxxxx'
       },
       // 表單驗證規則
       loginFormRules: {
         // 驗證用戶名
         username: [
-          { required: true, message: "請輸入登入名稱", trigger: "blur" },
-          { min: 3, max: 10, message: "長度在 3 到 10 個字", trigger: "blur" }
+          { required: true, message: '請輸入登入名稱', trigger: 'blur' },
+          { min: 3, max: 10, message: '長度在 3 到 10 個字', trigger: 'blur' }
         ],
         // 驗證密碼
         password: [
-          { required: true, message: "請輸入密碼", trigger: "blur" },
-          { min: 5, max: 15, message: "長度在 5 到 15 個字", trigger: "blur" }
+          { required: true, message: '請輸入密碼', trigger: 'blur' },
+          { min: 5, max: 15, message: '長度在 5 到 15 個字', trigger: 'blur' }
         ]
       }
-    };
+    }
   },
   methods: {
     // 清除按鈕
     resetLoginForm() {
       // console.log(this);
-      this.$refs.loginFormRef.resetFields();
+      this.$refs.loginFormRef.resetFields()
     },
+
     // 送出請求前的預驗證方法validate()
     login() {
       this.$refs.loginFormRef.validate(async valid => {
-        console.log(valid);
-        if (!valid) return;
-        const { data: res } = await this.$http.post("login", this.loginForm);
-        console.log(res);
-        if (res.mata.status !== 200) {
-          this.$message.error("登入失敗!");
-          reutrn;
+        console.log(valid)
+        if (!valid) return
+        const { data: res } = await this.$http.get('login', this.loginForm)
+
+        if (res.meta.status !== 200) {
+          return this.$message.error('登入失敗!')
         } else {
-          this.$message.success("你登入成功了!");
+          this.$message.success('你登入成功了!')
         }
-      });
+        console.log(res)
+        // 把token保存到 sessionStorage
+        window.sessionStorage.setItem('token', res.data.token)
+        // 跳轉到新瀏覽頁面
+        this.$router.push('/home')
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
