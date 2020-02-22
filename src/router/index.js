@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Login from '@/components/Login.vue'
 import Cate from '@/components/goods/Cate.vue'
 import Home from '@/components/Home.vue'
+import Welcome from '@/components/Welcome.vue'
+import Users from '@/components/user/Users.vue'
 
 Vue.use(Router)
 
@@ -11,7 +13,14 @@ const router = new Router({
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
     { path: '/categories', component: Cate },
-    { path: '/home', component: Home }
+    {
+      path: '/home', component: Home, 
+      redirect: '/welcome',
+      children: [
+        { path: '/welcome', component: Welcome },
+        { path: '/users', component: Users }
+      ]
+    }
   ]
 })
 // 掛載路由守衛
@@ -25,7 +34,7 @@ router.beforeEach((to, from, next) => {
   const tokenStr = window.sessionStorage.getItem('token');
   console.log('token:' + tokenStr);
   if (!tokenStr) next('/login');
-  if (tokenStr !== 'smallken') next('/login');
+  if (tokenStr !== 'diwiiddw2df83kdkwe83kds82idwef') next('/login');
   next();
 
 });

@@ -1,17 +1,134 @@
 {
-	"login":{
-
-
-		"data":{
-			"id":500,
+	"login": {
+		"data": {
+			"id": 500,
 			"rid": 0,
-			"username":"admin",
+			"username": "admin",
 			"mobile": "123",
-			"email" : "123@gmail.com",
-			"token":"diwiiddw2df83kdkwe83kds82idwef"
+			"email": "123@gmail.com",
+			"token": "diwiiddw2df83kdkwe83kds82idwef"
 		},
-		"meta":{
-			"msg":"登入成功",
+		"meta": {
+			"msg": "登入成功",
+			"status": 200
+		}
+	},
+	"menus": {
+		"data": [
+			{
+				"id": 125,
+				"authName": "用戶管理",
+				"path": "users",
+				"children": [
+					{
+						"id": 110,
+						"authName": "用戶列表",
+						"path": "users",
+						"children": []
+					}
+				]
+			},
+			{
+				"id": 103,
+				"authName": "權限管理",
+				"path": "rights",
+				"children": [
+					{
+						"id": 104,
+						"authName": "角色列表",
+						"path": "roles",
+						"children": []
+					},
+					{
+						"id": 105,
+						"authName": "權限列表",
+						"path": "rights",
+						"children": []
+					}
+				]
+			},
+			{
+				"id": 102,
+				"authName": "商品管理",
+				"path": "goods",
+				"children": [
+					{
+						"id": 107,
+						"authName": "商品列表",
+						"path": null,
+						"children": []
+					},
+					{
+						"id": 108,
+						"authName": "分類參數",
+						"path": null,
+						"children": []
+					},
+					{
+						"id": 109,
+						"authName": "商品分類",
+						"path": null,
+						"children": []
+					}
+				]
+			},
+			{
+				"id": 101,
+				"authName": "訂單管理",
+				"path": "orders",
+				"children": [
+					{
+						"id": 110,
+						"authName": "商品列表",
+						"path": null,
+						"children": []
+					}
+				]
+			},
+			{
+				"id": 145,
+				"authName": "數據統計",
+				"path": "reports",
+				"children": [
+					{
+						"id": 111,
+						"authName": "商品列表",
+						"path": null,
+						"children": []
+					}
+				]
+			}
+		],
+		"meta": {
+			"msg": "取得功能清單成功",
+			"status": 200
+		}
+	},
+	"users": {
+		"data": {
+			"pagenum": 1,
+			"total": 4,
+			"users": [
+				{
+					"id": 500,
+					"role_name": "超級管理者",
+					"username": "admin",
+					"email":"admin@gmail.com",
+					"mobile":"0988444558",
+					"mg_state":true
+				},
+				{
+					"id": 501,
+					"role_name": "測試角色",
+					"username": "linken",
+					"email":"linken@gmail.com",
+					"mobile":"0957887455",
+					"mg_state":false
+				}
+			]
+		},
+		"meta": {
+			"msg": "取得用戶資料成功",
 			"status": 200
 		}
 	}
