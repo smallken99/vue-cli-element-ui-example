@@ -10,12 +10,12 @@
     <el-card>
       <el-row :gutter="20">
         <el-col :span="7">
-          <el-input placeholder="請輸入內容">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input placeholder="請輸入內容" v-model="queryInfo.query" clearable @clear="getUserList">
+            <el-button slot="append" icon="el-icon-search" @click="getUserList"></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary" @click>+ 新增用戶</el-button>
+          <el-button type="primary" @click="adddialogVisible=true">+ 新增用戶</el-button>
         </el-col>
       </el-row>
       <!-- 用戶列表區 -->
@@ -27,7 +27,7 @@
         <el-table-column prop="role_name" label="角色"></el-table-column>
         <el-table-column label="狀態">
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.mg_state"></el-switch>
+            <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -53,6 +53,30 @@
         :total="total"
       ></el-pagination>
     </el-card>
+
+    <!-- 新增用戶的對話框 -->
+    <el-dialog title="新增用戶" :visible.sync="adddialogVisible" width="50%">
+      <!-- 內容主體 -->
+      <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
+        <el-form-item label="用戶名稱" prop="username">
+          <el-input v-model="addForm.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密碼" prop="password">
+          <el-input v-model="addForm.password" type="password"></el-input>
+        </el-form-item>
+        <el-form-item label="EMAIL" prop="email">
+          <el-input v-model="addForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="手機" prop="mobile">
+          <el-input v-model="addForm.mobile"></el-input>
+        </el-form-item>
+      </el-form>
+      <!-- 底部區 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="adddialogVisible=false">取消</el-button>
+        <el-button type="primary" @click="adddialogVisible=false">確定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -69,7 +93,59 @@ export default {
         pagesize: 2
       },
       userList: [],
-      total: 0
+      total: 0,
+      // 控制新增用戶對話框顥示
+      adddialogVisible: false,
+      // 新增用戶的表單資料
+      addForm: {
+        username: '',
+        password: '',
+        email: '',
+        mobile: ''
+      },
+      // 新增用戶的驗證表單規則
+      addFormRules: {
+        username: [
+          {
+            required: true,
+            message: '請輸入用戶名稱',
+            trigger: 'blur'
+          },
+          {
+            min: 3,
+            max: 10,
+            message: '請用戶名長度在3到10字之間',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: '請輸入密碼',
+            trigger: 'blur'
+          },
+          {
+            min: 5,
+            max: 15,
+            message: '請用密碼長度在5到15字之間',
+            trigger: 'blur'
+          }
+        ],
+        email: [
+          {
+            required: true,
+            message: '請輸入EMAIL',
+            trigger: 'blur'
+          }
+        ],
+        mobile: [
+          {
+            required: true,
+            message: '請輸入手機',
+            trigger: 'blur'
+          }
+        ]
+      }
     }
   },
   created() {
@@ -78,7 +154,7 @@ export default {
   methods: {
     async getUserList() {
       const { data: res } = await this.$http.get('users', {
-        params: this.queryInfo
+        params: this.userinfo
       })
       if (res.meta.status !== 200)
         return this.$message.error('取得用戶資料失敗!')
@@ -88,16 +164,30 @@ export default {
     },
     // 監聽pageSize改變的事件
     handleSizeChange(newSize) {
-        this.queryInfo.pagesize = newSize;
-        // console.log(newSize)
-        this.getUserList();
-
+      this.queryInfo.pagesize = newSize
+      // console.log(newSize)
+      this.getUserList()
     },
     // 監聽頁碼值改變的事件
     handleCurrentChange(newPage) {
-        this.queryInfo.pagenum = newPage
-        // console.log(newPage)
-        this.getUserList();
+      this.queryInfo.pagenum = newPage
+      // console.log(newPage)
+      this.getUserList()
+    },
+    // 監聽switch狀態的改變
+    async userStateChanged(userinfo) {
+      // console.log(userinfo)
+      // 這裡只是語法示範, 實際上會json-server後端操作不會更新成功
+      const { data: res } = await this.$http.put(
+        `users/${userinfo.id}/state/${userinfo.mg_state}`
+      )
+      if (res.meta.status !== 200) {
+        this.userinfo.mg_state = !this.userinfo.mg_state
+        return this.$message.error('更新用戶狀態失敗!')
+      } else {
+        this.$message.success('更新用戶狀態成功!')
+      }
+      console.log(res)
     }
   }
 }
