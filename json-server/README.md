@@ -12,4 +12,4 @@ npm install -g json-server
 C:\Users\user\vueapp>json-server json-server/db.json
 ```
 # 使用限制
-因為是靜態的資料，所以沒有動態分頁的效果，但對於範例中大部分的操作都可以work。
+因為是靜態的資料，所以查詢資料可以，但是更新資料無法work。
