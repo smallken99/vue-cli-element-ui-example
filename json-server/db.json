@@ -293,5 +293,193 @@
       "email": "melbagross@medmex.com",
       "mg_state": true
     }
-  ]
+  ],
+  "rights_list": {
+    "data": [
+      {
+        "id": 101,
+        "authName": "商品管理",
+        "level": "0",
+        "pid": 0,
+        "path": "goods"
+      },
+      {
+        "id": 102,
+        "authName": "訂單管理",
+        "level": "0",
+        "pid": 0,
+        "path": "orders"
+      },
+      {
+        "id": 103,
+        "authName": "權限管理",
+        "level": "0",
+        "pid": 0,
+        "path": "rights"
+      },
+      {
+        "id": 104,
+        "authName": "商品列表",
+        "level": "1",
+        "pid": 0,
+        "path": "goods"
+      },
+      {
+        "id": 105,
+        "authName": "新增商品",
+        "level": "2",
+        "pid": 0,
+        "path": "goods"
+      },
+      {
+        "id": 106,
+        "authName": "訂單列表",
+        "level": "1",
+        "pid": 0,
+        "path": "orders"
+      },
+      {
+        "id": 107,
+        "authName": "新增訂單",
+        "level": "2",
+        "pid": 0,
+        "path": "orders"
+      },
+      {
+        "id": 108,
+        "authName": "用戶列表",
+        "level": "1",
+        "pid": 0,
+        "path": "users"
+      }
+    ],
+    "meta": {
+      "msg": "取得權限列表成功",
+      "status": 200
+    }
+  },
+  "roles": {
+    "data": [
+      {
+        "id": 10,
+        "roleName": "主管",
+        "roleDesc": "技術負責人",
+        "children": [
+          {
+            "id": 201,
+            "authName": "商品管理",
+            "path": null,
+            "children": [
+              {
+                "id": 301,
+                "authName": "商品列表",
+                "path": null,
+                "children": [
+                  {
+                    "id": 3011,
+                    "authName": "商品修改",
+                    "path": null,
+                    "children": null
+                  },                  {
+                    "id": 3012,
+                    "authName": "更新商品圖片",
+                    "path": null,
+                    "children": null
+                  }
+
+                ]
+              },
+              {
+                "id": 302,
+                "authName": "商品分類",
+                "path": null,
+                "children": [
+                  {
+                    "id": 3021,
+                    "authName": "新增分類",
+                    "path": null,
+                    "children": null
+                  },                  {
+                    "id": 3022,
+                    "authName": "刪除分類",
+                    "path": null,
+                    "children": null
+                  }
+                ]
+              },
+              {
+                "id": 303,
+                "authName": "分類參數",
+                "path": null,
+                "children": [
+                  {
+                    "id": 3031,
+                    "authName": "取得參數列表",
+                    "path": null,
+                    "children": null
+                  },                  {
+                    "id": 3032,
+                    "authName": "刪除商品參數",
+                    "path": null,
+                    "children": null
+                  }
+
+                ]
+              }
+            ]
+          },
+          {
+            "id": 202,
+            "authName": "訂單管理",
+            "path": null,
+            "children": [
+              {
+                "id": 301,
+                "authName": "商品列表",
+                "path": null,
+                "children": [
+                  {
+                    "id": 401,
+                    "authName": "新增商品",
+                    "path": null,
+                    "children": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 203,
+            "authName": "權限管理",
+            "path": null,
+            "children": [
+              {
+                "id": 301,
+                "authName": "商品列表",
+                "path": null,
+                "children": [
+                  {
+                    "id": 401,
+                    "authName": "新增商品",
+                    "path": null,
+                    "children": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "roleName": "測試角色",
+        "roleDesc": "測試角色描述",
+        "children": []
+      }
+    ],
+    "meta": {
+      "msg": "取得角色列表成功",
+      "status": 200
+    }
+  }
 }
