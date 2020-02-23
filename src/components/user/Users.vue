@@ -30,11 +30,16 @@
             <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"></el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="200px">
           <template slot-scope="scope">
             <!-- 刪改按鈕 -->
-            <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
-            <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              @click="showEditDialog(scope.row.id)"
+            ></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeUserById(scope.row.id)"></el-button>
             <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
               <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
             </el-tooltip>
@@ -55,7 +60,7 @@
     </el-card>
 
     <!-- 新增用戶的對話框 -->
-    <el-dialog title="新增用戶" :visible.sync="adddialogVisible" width="50%">
+    <el-dialog title="新增用戶" :visible.sync="adddialogVisible" width="50%" @close="addFormClosed">
       <!-- 內容主體 -->
       <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
         <el-form-item label="用戶名稱" prop="username">
@@ -74,15 +79,61 @@
       <!-- 底部區 -->
       <span slot="footer" class="dialog-footer">
         <el-button @click="adddialogVisible=false">取消</el-button>
-        <el-button type="primary" @click="adddialogVisible=false">確定</el-button>
+        <el-button type="primary" @click="addUser">確定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 修改用戶的對話框 -->
+    <el-dialog title="修改用戶" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
+      <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
+        <el-form-item label="用戶名稱">
+          <el-input v-model="editForm.username" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="電子郵箱" prop="email">
+          <el-input v-model="editForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="手機號碼" prop="mobile">
+          <el-input v-model="editForm.mobile"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <span slot="footer">
+        <el-button @click="editDialogVisible= false">取消</el-button>
+        <el-button type="primary" @click="editUserInfo">確定</el-button>
+      </span>
+    </el-dialog>
+
+ 
+
+    
   </div>
 </template>
 
 <script>
 export default {
   data() {
+    // 驗證email的規則
+    var checkEmail = (rule, value, cb) => {
+      // 驗證email的正測表示式
+      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
+      if (regEmail.test(value)) {
+        // 合法的email
+        return cb()
+      } else {
+        cb(new Error('請輸入合法的電子email'))
+      }
+    }
+    // 驗證手機號碼
+    var checkMobile = (rule, value, cb) => {
+      // 驗證手機號碼的正測表示式
+      const regMobile = /^\d{10}$/
+      if (regMobile.test(value)) {
+        // 合法的手機號碼
+        return cb()
+      } else {
+        cb(new Error('請輸入合法的手機號碼'))
+      }
+    }
     return {
       // 取得用戶列表的參數
       queryInfo: {
@@ -136,6 +187,10 @@ export default {
             required: true,
             message: '請輸入EMAIL',
             trigger: 'blur'
+          },
+          {
+            validator: checkEmail,
+            trigger: 'blur'
           }
         ],
         mobile: [
@@ -143,7 +198,34 @@ export default {
             required: true,
             message: '請輸入手機',
             trigger: 'blur'
+          },
+          { validator: checkMobile, trigger: 'blur' }
+        ]
+      },
+      // 控制修改用戶對話框的顯示
+      editDialogVisible: false,
+      // 保存修改對話框的欄位資訊
+      editForm: {},
+      // 修改表單的驗證規則
+      editFormRules: {
+        email: [
+          {
+            required: true,
+            message: '請輸入EMAIL',
+            trigger: 'blur'
+          },
+          {
+            validator: checkEmail,
+            trigger: 'blur'
           }
+        ],
+        mobile: [
+          {
+            required: true,
+            message: '請輸入手機',
+            trigger: 'blur'
+          },
+          { validator: checkMobile, trigger: 'blur' }
         ]
       }
     }
@@ -188,6 +270,90 @@ export default {
         this.$message.success('更新用戶狀態成功!')
       }
       console.log(res)
+    },
+    // 監聽關閉視窗事件 重置表單驗證訊息
+    addFormClosed() {
+      console.log('addFormClosed')
+      this.$refs.addFormRef.resetFields()
+    },
+    addUser() {
+      this.$refs.addFormRef.validate(async valid => {
+        if (!valid) return
+        // 校驗成功 可以正式發起新增用戶請求
+        const { data: res } = await this.$http.post('users', this.addForm)
+        if (res.meta.status !== 201) {
+          this.$message.error('新增用戶失敗')
+        }
+        this.$message.success('新增用戶成功')
+        // 隱藏對話框
+        this.adddialogVisible = false
+        // 重新取得用戶清單
+        this.getUserList()
+      })
+    },
+    // 彈出修改對話框
+    async showEditDialog(id) {
+      console.log(id)
+      const { data: res } = await this.$http.get(`user/${id}`)
+      console.log(res)
+      this.editForm = res
+      this.editDialogVisible = true
+    },
+    // 監聽修改用戶關閉對話框
+    editDialogClosed() {
+      this.$refs.editFormRef.resetFields()
+    },
+    // 修改用戶資料驗證並提交
+    editUserInfo() {
+      this.$refs.editFormRef.validate(async valid => {
+        console.log(valid)
+        if (!valid) return
+        // 發起修改用戶資訊的請求
+        const { data: res } = await this.$http.put(
+          'user/' + this.editForm.id,
+          this.editForm
+        )
+        console.log(res)
+        // 以下為了可以讓json-server可以更新資料成功,所以使用跟原本取得使用者列表不一樣的資料來源,
+        // 也沒有去判斷meta.status的回應碼,以下只是為了讓更新可以成功的示範而已。
+        if (res.id === this.editForm.id) {
+          // 關閉對話視窗
+          this.editDialogVisible = false
+          // 重新詢用戶列表
+          this.getUserList()
+          // 訊息
+          this.$message.success('修改用戶成功')
+        } else {
+          this.$message.error('修改用戶失敗')
+        }
+      })
+    },
+    // 刪除用戶
+    removeUserById(id) {
+      this.$confirm('是否永久刪除?', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        callback: async action => {
+          console.log(action) // cancel or confirm
+          if(action === 'cancel'){
+            return this.$message.info('已經取消刪除')
+          }else{
+            // 以下為了可以讓json-server可以刪除資料成功,所以使用跟原本取得使用者列表不一樣的資料來源,
+            // 也沒有去判斷meta.status的回應碼,以下只是為了讓刪除可以成功的示範而已。
+            const { data: res } = await this.$http.delete('user/' + id)
+            console.log(res)
+            if(Object.keys(res).length == 0){ // 判斷空物件表示已經刪除
+               this.$message.success('確認刪除用戶')
+            }else{
+              this.$message.error('刪除用戶失敗')
+            }
+           
+          }
+        }
+      });
+      
+      console.log(id)
     }
   }
 }

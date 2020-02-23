@@ -1,207 +1,297 @@
 {
-	"login": {
-		"data": {
-			"id": 500,
-			"rid": 0,
-			"username": "admin",
-			"mobile": "123",
-			"email": "123@gmail.com",
-			"token": "diwiiddw2df83kdkwe83kds82idwef"
-		},
-		"meta": {
-			"msg": "登入成功",
-			"status": 200
-		}
-	},
-	"menus": {
-		"data": [
-			{
-				"id": 125,
-				"authName": "用戶管理",
-				"path": "users",
-				"children": [
-					{
-						"id": 110,
-						"authName": "用戶列表",
-						"path": "users",
-						"children": []
-					}
-				]
-			},
-			{
-				"id": 103,
-				"authName": "權限管理",
-				"path": "rights",
-				"children": [
-					{
-						"id": 104,
-						"authName": "角色列表",
-						"path": "roles",
-						"children": []
-					},
-					{
-						"id": 105,
-						"authName": "權限列表",
-						"path": "rights",
-						"children": []
-					}
-				]
-			},
-			{
-				"id": 102,
-				"authName": "商品管理",
-				"path": "goods",
-				"children": [
-					{
-						"id": 107,
-						"authName": "商品列表",
-						"path": null,
-						"children": []
-					},
-					{
-						"id": 108,
-						"authName": "分類參數",
-						"path": null,
-						"children": []
-					},
-					{
-						"id": 109,
-						"authName": "商品分類",
-						"path": null,
-						"children": []
-					}
-				]
-			},
-			{
-				"id": 101,
-				"authName": "訂單管理",
-				"path": "orders",
-				"children": [
-					{
-						"id": 110,
-						"authName": "商品列表",
-						"path": null,
-						"children": []
-					}
-				]
-			},
-			{
-				"id": 145,
-				"authName": "數據統計",
-				"path": "reports",
-				"children": [
-					{
-						"id": 111,
-						"authName": "商品列表",
-						"path": null,
-						"children": []
-					}
-				]
-			}
-		],
-		"meta": {
-			"msg": "取得功能清單成功",
-			"status": 200
-		}
-	},
-	"users": {
-		"data": {
-			"pagenum": 1,
-			"total": 4,
-			"users": [
-				{
-					"id": 510,
-					"role_name": "FUTURIS",
-					"username": "Jane Lancaster",
-					"mobile": "(971) 427-3573",
-					"email": "janelancaster@futuris.com",
-					"mg_state": false
-				},
-				{
-					"id": 511,
-					"role_name": "ENERVATE",
-					"username": "Pam Peterson",
-					"mobile": "(989) 507-2273",
-					"email": "pampeterson@enervate.com",
-					"mg_state": true
-				},
-				{
-					"id": 512,
-					"role_name": "INJOY",
-					"username": "Battle Mccullough",
-					"mobile": "(870) 560-3201",
-					"email": "battlemccullough@injoy.com",
-					"mg_state": false
-				},
-				{
-					"id": 513,
-					"role_name": "DAISU",
-					"username": "Rhodes Yates",
-					"mobile": "(971) 593-3333",
-					"email": "rhodesyates@daisu.com",
-					"mg_state": false
-				},
-				{
-					"id": 514,
-					"role_name": "SONIQUE",
-					"username": "Letha Baird",
-					"mobile": "(862) 514-3614",
-					"email": "lethabaird@sonique.com",
-					"mg_state": true
-				},
-				{
-					"id": 515,
-					"role_name": "AUSTEX",
-					"username": "Kathleen Myers",
-					"mobile": "(919) 540-2765",
-					"email": "kathleenmyers@austex.com",
-					"mg_state": false
-				},
-				{
-					"id": 516,
-					"role_name": "CONJURICA",
-					"username": "Concetta Jacobson",
-					"mobile": "(973) 463-3848",
-					"email": "concettajacobson@conjurica.com",
-					"mg_state": false
-				},
-				{
-					"id": 517,
-					"role_name": "ZEAM",
-					"username": "Jayne Weber",
-					"mobile": "(908) 592-2673",
-					"email": "jayneweber@zeam.com",
-					"mg_state": true
-				},
-				{
-					"id": 518,
-					"role_name": "NEBULEAN",
-					"username": "Farley Mullen",
-					"mobile": "(976) 487-2726",
-					"email": "farleymullen@nebulean.com",
-					"mg_state": false
-				},
-				{
-					"id": 519,
-					"role_name": "SURELOGIC",
-					"username": "Riley Rivers",
-					"mobile": "(815) 440-3252",
-					"email": "rileyrivers@surelogic.com",
-					"mg_state": false
-				},
-				{
-					"id": 520,
-					"role_name": "MEDMEX",
-					"username": "Melba Gross",
-					"mobile": "(876) 561-2638",
-					"email": "melbagross@medmex.com",
-					"mg_state": true
-				}
-			]
-		},
-		"meta": {
-			"msg": "取得用戶資料成功",
-			"status": 200
-		}
-	}
+  "login": {
+    "data": {
+      "id": 500,
+      "rid": 0,
+      "username": "admin",
+      "mobile": "123",
+      "email": "123@gmail.com",
+      "token": "diwiiddw2df83kdkwe83kds82idwef"
+    },
+    "meta": {
+      "msg": "登入成功",
+      "status": 200
+    }
+  },
+  "menus": {
+    "data": [
+      {
+        "id": 125,
+        "authName": "用戶管理",
+        "path": "users",
+        "children": [
+          {
+            "id": 110,
+            "authName": "用戶列表",
+            "path": "users",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "authName": "權限管理",
+        "path": "rights",
+        "children": [
+          {
+            "id": 104,
+            "authName": "角色列表",
+            "path": "roles",
+            "children": []
+          },
+          {
+            "id": 105,
+            "authName": "權限列表",
+            "path": "rights",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 102,
+        "authName": "商品管理",
+        "path": "goods",
+        "children": [
+          {
+            "id": 107,
+            "authName": "商品列表",
+            "path": null,
+            "children": []
+          },
+          {
+            "id": 108,
+            "authName": "分類參數",
+            "path": null,
+            "children": []
+          },
+          {
+            "id": 109,
+            "authName": "商品分類",
+            "path": null,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 101,
+        "authName": "訂單管理",
+        "path": "orders",
+        "children": [
+          {
+            "id": 110,
+            "authName": "商品列表",
+            "path": null,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 145,
+        "authName": "數據統計",
+        "path": "reports",
+        "children": [
+          {
+            "id": 111,
+            "authName": "商品列表",
+            "path": null,
+            "children": []
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "msg": "取得功能清單成功",
+      "status": 200
+    }
+  },
+  "users": {
+    "data": {
+      "pagenum": 1,
+      "total": 4,
+      "users": [
+        {
+          "id": 510,
+          "role_name": "FUTURIS",
+          "username": "Jane Lancaster",
+          "mobile": "(971) 427-3573",
+          "email": "janelancaster@futuris.com",
+          "mg_state": false
+        },
+        {
+          "id": 511,
+          "role_name": "ENERVATE",
+          "username": "Pam Peterson",
+          "mobile": "(989) 507-2273",
+          "email": "pampeterson@enervate.com",
+          "mg_state": true
+        },
+        {
+          "id": 512,
+          "role_name": "INJOY",
+          "username": "Battle Mccullough",
+          "mobile": "(870) 560-3201",
+          "email": "battlemccullough@injoy.com",
+          "mg_state": false
+        },
+        {
+          "id": 513,
+          "role_name": "DAISU",
+          "username": "Rhodes Yates",
+          "mobile": "(971) 593-3333",
+          "email": "rhodesyates@daisu.com",
+          "mg_state": false
+        },
+        {
+          "id": 514,
+          "role_name": "SONIQUE",
+          "username": "Letha Baird",
+          "mobile": "(862) 514-3614",
+          "email": "lethabaird@sonique.com",
+          "mg_state": true
+        },
+        {
+          "id": 515,
+          "role_name": "AUSTEX",
+          "username": "Kathleen Myers",
+          "mobile": "(919) 540-2765",
+          "email": "kathleenmyers@austex.com",
+          "mg_state": false
+        },
+        {
+          "id": 516,
+          "role_name": "CONJURICA",
+          "username": "Concetta Jacobson",
+          "mobile": "(973) 463-3848",
+          "email": "concettajacobson@conjurica.com",
+          "mg_state": false
+        },
+        {
+          "id": 517,
+          "role_name": "ZEAM",
+          "username": "Jayne Weber",
+          "mobile": "(908) 592-2673",
+          "email": "jayneweber@zeam.com",
+          "mg_state": true
+        },
+        {
+          "id": 518,
+          "role_name": "NEBULEAN",
+          "username": "Farley Mullen",
+          "mobile": "(976) 487-2726",
+          "email": "farleymullen@nebulean.com",
+          "mg_state": false
+        },
+        {
+          "id": 519,
+          "role_name": "SURELOGIC",
+          "username": "Riley Rivers",
+          "mobile": "(815) 440-3252",
+          "email": "rileyrivers@surelogic.com",
+          "mg_state": false
+        },
+        {
+          "id": 520,
+          "role_name": "MEDMEX",
+          "username": "Melba Gross",
+          "mobile": "(876) 561-2638",
+          "email": "melbagross@medmex.com",
+          "mg_state": true
+        }
+      ]
+    },
+    "meta": {
+      "msg": "取得用戶資料成功",
+      "status": 200
+    }
+  },
+  "user": [
+    {
+      "id": 510,
+      "role_name": "FUTURIS",
+      "username": "Jane Lancaster",
+      "mobile": "0988444444",
+      "email": "janelancaster@futuris.com",
+      "mg_state": false
+    },
+    {
+      "id": 511,
+      "role_name": "ENERVATE",
+      "username": "Pam Peterson",
+      "mobile": "(989) 507-2273",
+      "email": "pampeterson@enervate.com",
+      "mg_state": true
+    },
+    {
+      "id": 512,
+      "role_name": "INJOY",
+      "username": "Battle Mccullough",
+      "mobile": "(870) 560-3201",
+      "email": "battlemccullough@injoy.com",
+      "mg_state": false
+    },
+    {
+      "id": 513,
+      "role_name": "DAISU",
+      "username": "Rhodes Yates",
+      "mobile": "(971) 593-3333",
+      "email": "rhodesyates@daisu.com",
+      "mg_state": false
+    },
+    {
+      "id": 514,
+      "role_name": "SONIQUE",
+      "username": "Letha Baird",
+      "mobile": "(862) 514-3614",
+      "email": "lethabaird@sonique.com",
+      "mg_state": true
+    },
+    {
+      "id": 515,
+      "role_name": "AUSTEX",
+      "username": "Kathleen Myers",
+      "mobile": "(919) 540-2765",
+      "email": "kathleenmyers@austex.com",
+      "mg_state": false
+    },
+    {
+      "id": 516,
+      "role_name": "CONJURICA",
+      "username": "Concetta Jacobson",
+      "mobile": "(973) 463-3848",
+      "email": "concettajacobson@conjurica.com",
+      "mg_state": false
+    },
+    {
+      "id": 517,
+      "role_name": "ZEAM",
+      "username": "Jayne Weber",
+      "mobile": "(908) 592-2673",
+      "email": "jayneweber@zeam.com",
+      "mg_state": true
+    },
+    {
+      "id": 518,
+      "role_name": "NEBULEAN",
+      "username": "Farley Mullen",
+      "mobile": "(976) 487-2726",
+      "email": "farleymullen@nebulean.com",
+      "mg_state": false
+    },
+    {
+      "id": 519,
+      "role_name": "SURELOGIC",
+      "username": "Riley Rivers",
+      "mobile": "(815) 440-3252",
+      "email": "rileyrivers@surelogic.com",
+      "mg_state": false
+    },
+    {
+      "id": 520,
+      "role_name": "MEDMEX",
+      "username": "Melba Gross",
+      "mobile": "(876) 561-2638",
+      "email": "melbagross@medmex.com",
+      "mg_state": true
+    }
+  ]
 }
