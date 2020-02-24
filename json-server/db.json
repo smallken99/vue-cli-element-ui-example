@@ -358,6 +358,94 @@
       "status": 200
     }
   },
+  "rights_tree": {
+    "data": [
+      {
+        "id": 101,
+        "authName": "商品管理",
+        "level": "0",
+        "pid": 0,
+        "path": "goods",
+        "children": [
+          {
+            "id": 106,
+            "authName": "訂單列表",
+            "level": "1",
+            "pid": 0,
+            "path": "orders",
+            "children":[
+              {
+                "id": 104,
+                "authName": "商品列表",
+                "level": "1",
+                "pid": 0,
+                "path": "goods"
+              }
+            ]
+          },
+          {
+            "id": 108,
+            "authName": "用戶列表",
+            "level": "1",
+            "pid": 0,
+            "path": "users",
+            "children":[
+              {
+                "id": 104,
+                "authName": "商品列表",
+                "level": "1",
+                "pid": 0,
+                "path": "goods"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 102,
+        "authName": "訂單管理",
+        "level": "0",
+        "pid": 0,
+        "path": "orders",
+        "children":[
+          {
+            "id": 105,
+            "authName": "新增商品",
+            "level": "2",
+            "pid": 0,
+            "path": "goods"
+          },
+          {
+            "id": 107,
+            "authName": "新增訂單",
+            "level": "2",
+            "pid": 0,
+            "path": "orders"
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "authName": "權限管理",
+        "level": "0",
+        "pid": 0,
+        "path": "rights",
+        "children":[
+          {
+            "id": 107,
+            "authName": "新增權限",
+            "level": "2",
+            "pid": 0,
+            "path": "rights"
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "msg": "取得權限列表成功",
+      "status": 200
+    }
+  },
   "roles": {
     "data": [
       {
@@ -376,17 +464,17 @@
                 "path": null,
                 "children": [
                   {
-                    "id": 3011,
+                    "id": 102,
                     "authName": "商品修改",
                     "path": null,
                     "children": null
-                  },                  {
-                    "id": 3012,
+                  },
+                  {
+                    "id": 106,
                     "authName": "更新商品圖片",
                     "path": null,
                     "children": null
                   }
-
                 ]
               },
               {
@@ -395,12 +483,13 @@
                 "path": null,
                 "children": [
                   {
-                    "id": 3021,
+                    "id": 105,
                     "authName": "新增分類",
                     "path": null,
                     "children": null
-                  },                  {
-                    "id": 3022,
+                  },
+                  {
+                    "id": 104,
                     "authName": "刪除分類",
                     "path": null,
                     "children": null
@@ -417,13 +506,13 @@
                     "authName": "取得參數列表",
                     "path": null,
                     "children": null
-                  },                  {
+                  },
+                  {
                     "id": 3032,
                     "authName": "刪除商品參數",
                     "path": null,
                     "children": null
                   }
-
                 ]
               }
             ]
